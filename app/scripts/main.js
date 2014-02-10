@@ -1,4 +1,4 @@
-console.log('\'Allo \'Allo!');
+console.log('El Edwin');
 
 function Collection (models) {
   this.models = models || [];
@@ -7,7 +7,7 @@ function Collection (models) {
     var result;
  
     if (typeof(id) != 'string') {
-      throw new Error("Whoops!");
+      throw new Error("Oh Dang!");
     }
  
     this.models.forEach(function(value, index){
@@ -20,8 +20,24 @@ function Collection (models) {
       return result;
     }
   };
-  // this.add = function (toBeAdded){
-  //   this.models.push(toBeAdded);  
-  // };
+  
+  this.add = function(toBeAdded) {
+    
+    this.models.push(toBeAdded);  
+
+    if(_.isEmpty(toBeAdded)) {
+      throw new Error("Dingus!, Empty Arguments aren't valid here");
+    }  
+    if(!toBeAdded.hasOwnProperty('id')) {
+      throw new Error('Dingus!, You need an ID');
+    }
+
+  };
+
+  this.remove = function(toRemove) {
+
+    // this.models = _.reject(this.models, function());
+  }
+
 };
 

@@ -4,7 +4,7 @@
   'use strict';
 
   describe('A Collection constructor', function () {
-    describe(', when run', function () {
+    describe('when run', function () {
       it('should return a new object', function () {
         var students = new Collection;
 
@@ -61,13 +61,13 @@
           expect(students.models.length).to.equal(3);     
         });
         
-        it("should not accept an empty object as an argument", function(){
+        it("should not accept an empty object as an argument, will throw error if so", function(){
           var toBeAdded = [{name: 'Rocky', id: "1"}, {name: 'Apollo', id: "2"}];
           var students = new Collection(toBeAdded)
           expect(function(){students.add({})}).to.throw(Error);
         });
        
-        it("should throw an error when given an object without and id property", function(){
+        it("should throw an error when given an object without an id property", function(){
           var toBeAdded = [{name: 'Rocky', id: "1"}, {name: 'Apollo', id: "2"}];
           var students = new Collection(toBeAdded)
           expect(function(){students.add({name: 'Jimmy'})}).to.throw(Error);
@@ -77,15 +77,15 @@
  
       describe("has a .remove() method",function(){
         it("should, when given an id, remove the corresponding object from the models property", function(){
-          var toBeRemoved = [{name: 'Rocky', id: "1"}, {name: 'Apollo', id: "2"}];
-          var students = new Collection(toBeRemoved);
+          var toRemove = [{name: 'Rocky', id: "1"}, {name: 'Apollo', id: "2"}];
+          var students = new Collection(toRemove);
           students.remove('2');
           expect(students.models[1]).to.equal(undefined);
         });
 
         it("should decrease the models property's length by 1", function(){
-          var toBeRemoved = [{name: 'Rocky', id: "1"}, {name: 'Apollo', id: "2"}];
-          var students = new Collection(toBeRemoved);
+          var toRemove = [{name: 'Rocky', id: "1"}, {name: 'Apollo', id: "2"}];
+          var students = new Collection(toRemove);
           students.remove('2');
           expect(students.models.length).to.equal(1)
         });
@@ -98,8 +98,8 @@
         });
 
         it("should return true on successful removal", function(){
-          var toBeRemoved = [{name: 'Rocky', id: '1'}, {name: 'Apollo', id: '2'}];
-          var students = new Collection(toBeRemoved);
+          var toRemove = [{name: 'Rocky', id: '1'}, {name: 'Apollo', id: '2'}];
+          var students = new Collection(toRemove);
           expect(students.remove('1')).to.equal(true);
         });
 
